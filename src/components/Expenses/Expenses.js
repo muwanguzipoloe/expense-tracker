@@ -21,11 +21,13 @@ function Expenses(props) {
 				onChangeFilter={filterChangeHandler}
 			/>
 
-			{filteredExpenses.length === 0 ? (
+			{filteredExpenses.length === 0 && (
 				<p>
 					Your expenses list for the curently selected year is empty.
 				</p>
-			) : (
+			)}
+
+			{filteredExpenses.length > 0 &&
 				filteredExpenses.map((expense) => (
 					<ExpenseItem
 						key={expense.id}
@@ -33,8 +35,7 @@ function Expenses(props) {
 						amount={expense.amount}
 						date={expense.date}
 					/>
-				))
-			)}
+				))}
 		</div>
 	)
 }
