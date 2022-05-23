@@ -20,14 +20,21 @@ function Expenses(props) {
 				selected={filteredYear}
 				onChangeFilter={filterChangeHandler}
 			/>
-			{filteredExpenses.map((expense) => (
-				<ExpenseItem
-					key={expense.id}
-					title={expense.title}
-					amount={expense.amount}
-					date={expense.date}
-				/>
-			))}
+
+			{filteredExpenses.length === 0 ? (
+				<p>
+					Your expenses list for the curently selected year is empty.
+				</p>
+			) : (
+				filteredExpenses.map((expense) => (
+					<ExpenseItem
+						key={expense.id}
+						title={expense.title}
+						amount={expense.amount}
+						date={expense.date}
+					/>
+				))
+			)}
 		</div>
 	)
 }
