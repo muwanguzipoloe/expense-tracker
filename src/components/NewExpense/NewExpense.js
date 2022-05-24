@@ -23,20 +23,19 @@ const NewExpense = (props) => {
 		setPressed(false)
 	}
 
-	if (pressed === false) {
-		return (
-			<button onClick={formDisplayHandler} className="new-expense">
-				AddExpense
-			</button>
-		)
-	}
-
 	return (
 		<div className="new-expense">
-			<ExpenseForm
-				onSaveExpenseData={saveExpenseDataHandler}
-				cancelForm={cancelHandler}
-			/>
+			{!pressed && (
+				<button onClick={formDisplayHandler} className="new-expense">
+					AddExpense
+				</button>
+			)}
+			{pressed && (
+				<ExpenseForm
+					onSaveExpenseData={saveExpenseDataHandler}
+					cancelForm={cancelHandler}
+				/>
+			)}
 		</div>
 	)
 }
