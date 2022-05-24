@@ -3,6 +3,8 @@ import ExpenseForm from "./ExpenseForm"
 import "./NewExpense.css"
 
 const NewExpense = (props) => {
+	const [pressed, setPressed] = useState(false)
+
 	const saveExpenseDataHandler = (enteredExpenseData) => {
 		const expenseData = {
 			...enteredExpenseData,
@@ -12,9 +14,29 @@ const NewExpense = (props) => {
 		props.onAddExpense(expenseData)
 	}
 
+	const formDisplayHandler = (e) => {
+		e.preventDefault()
+		setPressed(true)
+	}
+	const cancelHandler = (e) => {
+		e.preventDefault()
+		setPressed(false)
+	}
+
+	if (pressed === false) {
+		return (
+			<button onClick={formDisplayHandler} className="new-expense">
+				AddExpense
+			</button>
+		)
+	}
+
 	return (
 		<div className="new-expense">
-			<ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+			<ExpenseForm
+				onSaveExpenseData={saveExpenseDataHandler}
+				cancelForm={cancelHandler}
+			/>
 		</div>
 	)
 }
